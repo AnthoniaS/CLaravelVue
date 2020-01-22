@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <painel titulo="Dashboard">
+<pagina tamanho="10">
+  <painel titulo="Dashboard">
                     Teste de conteudo
 
                     <div class="row">
@@ -20,16 +18,6 @@
 
                     </div>
 
-                    
-               
-                    
-
-                     
                 </painel>
-               
-                
-            </div>
-        </div>
-    </div>
-
+</pagina>
     @endsection
