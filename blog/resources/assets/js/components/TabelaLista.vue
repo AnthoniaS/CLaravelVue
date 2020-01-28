@@ -3,7 +3,8 @@
            
         
         <div class="form-inline">
-            <a v-if="criar" v-bind:href="criar">Criar</a>
+            <a v-if="criar && !modal" v-bind:href="criar">Criar</a>
+             <modallink v-if="criar && modal" nome="adicionar" titulo="Criar" css=""></modallink>
         <div class="form-group pull-right">
             <input type="search" class="form-control" placeholder="Buscar" v-model="buscar">
 
@@ -29,16 +30,20 @@
                 <form v-bind:id="index" v-if="deletar && token" v-bind:action="index.html" method="post">
                     <input type="hidden" name="method" value="DELETE">
                     <input type="hidden" name="_token" v-bind:value="token">
+                    
 
                    <a v-if="detalhe"  v-bind:href="detalhe">Detalhe |</a> 
-                 <a v-if="editar"  v-bind:href="editar">Editar |</a> 
+                 <a v-if="editar && modal"  v-bind:href="editar">Editar |</a> 
+                 <modallink v-if="editar && modal" nome="editar" titulo="Editar |" css=""></modallink>
+
                 <a href="#" v-on:click="executaForm(index)">Deletar</a>
 
 
                 </form>
                 <span v-if="!token">
                 <a v-if="detalhe"  v-bind:href="detalhe">Detalhe |</a> 
-                <a v-if="editar"  v-bind:href="editar">Editar |</a> 
+                 <a v-if="editar && modal"  v-bind:href="editar">Editar |</a> 
+                 <modallink v-if="editar && modal" nome="editar" titulo="Editar |" css=""></modallink>
                 <a v-if="deletar"  v-bind:href="deletar">Deletar</a> 
 
 
@@ -46,7 +51,8 @@
 
                 <span v-if="token && !deletar">
                 <a v-if="detalhe"  v-bind:href="detalhe">Detalhe |</a> 
-                <a v-if="editar"  v-bind:href="editar">Editar</a> 
+                <a v-if="editar && !modal"  v-bind:href="editar">Editar |</a> 
+                 <modallink v-if="editar && modal" nome="editar" titulo="Editar |" css=""></modallink>
 
 
                 </span>
@@ -65,7 +71,7 @@
 
 <script>
    export default{
-    props:['titulos','itens','ordem','ordemCol','criar','detalhe','editar','deletar','token'],
+    props:['titulos','itens','ordem','ordemCol','criar','detalhe','editar','deletar','token','modal'],
     data: function(){
         return {
             buscar:'',
@@ -97,31 +103,30 @@
 
             if(ordem == "asc"){
                 this.itens.sort(function(a,b){
-                if( a[ordemCol] > b[ordemCol] ) {return 1;} 
-                if( a[ordemCol] < b[ordemCol] ) {return -1;} 
+                if( Object.values(a)[ordemCol] > Object.values(b)[ordemCol] ) {return 1;} 
+                if( Object.values(a)[ordemCol] < Object.values(b)[ordemCol] ) {return -1;} 
                 return 0;
             });
 
             }else{
                 this.itens.sort(function(a,b){
-                if( a[ordemCol] < b[ordemCol]){return 1;} 
-                if( a[ordemCol] > b[ordemCol]){return -1;} 
+                if( Object.values(a)[ordemCol] < Object.values(b)[ordemCol]){return 1;} 
+                if( Object.values(a)[ordemCol] > Object.values(b)[ordemCol]){return -1;} 
                 return 0;
             });
             }
 
 
-            
-
-
-            return this.itens.filter(res => {
+            if(this.buscar){
+                 return this.itens.filter(res => {
                 for(let k = 0;k <res.length; k++){
                      if((res[k] + "").toLowerCase().indexOf(this.buscar.toLowerCase()) >= 0){
                     return true;
                 }
-                }
+            }
                return false;
             });
+            }
 
 
             return this.itens;

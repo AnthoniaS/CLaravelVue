@@ -8,14 +8,14 @@
 
   
 
-    <modallink nome="meuModalTeste" titulo="Criar" css=""></modallink>
+   
      <tabela-lista 
      v-bind:titulos="['#','Título','Descrição']"
-     v-bind:itens="[[1,'PHP OO','Curso de PHP OO'],[2,'Vue JS','Curso de Vue JS'],]"
+     v-bind:itens="{{$listaArtigos}}"
 
      ordem="desc" ordemCol="1"
      criar="#criar" detalhe="#detalhe" editar="#editar" deletar="#deletar" token="5565656"
-
+     modal="sim"
 
      ></tabela-lista>            
      
@@ -23,30 +23,66 @@
 
 </painel>
 </pagina>
-<modal nome="meuModalTeste">
+<modal nome="adicionar">
     <painel titulo="Adicionar">
-    
-    <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile">
-    <p class="help-block">Example block-level help text here.</p>
-  </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox"> Check me out
-    </label>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+      <painel titulo="Adicionar">
+    <formulario css="" action="#" method="put" enctype="multipart/form=data" token="12345" >
+        <div class="form-group">
+            <label for="titulo">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">    
+
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição">    
+
+        </div>
+        <button class="btn btn-info">Adicionar </button>
+        
+    </formulario>
+
+
+</painel>
+</modal>
+
+<modal nome="editar">
+    <painel titulo="Adicionar">
+      <painel titulo="Adicionar">
+    <formulario css="" action="#" method="put" enctype="multipart/form=data" token="12345" >
+        <div class="form-group">
+            <label for="titulo">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">    
+
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição">    
+
+        </div>
+        <button class="btn btn-info">Adicionar </button>
+        
+    </formulario>
+
+
+</painel>
+</modal>
+<modal nome="detalhe">
+    <painel titulo="Adicionar">
+      <painel titulo="Adicionar">
+    <formulario css="" action="#" method="put" enctype="multipart/form=data" token="12345" >
+        <div class="form-group">
+            <label for="titulo">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">    
+
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição">    
+
+        </div>
+        <button class="btn btn-info">Adicionar </button>
+        
+    </formulario>
 
 
 </painel>
