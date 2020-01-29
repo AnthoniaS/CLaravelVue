@@ -19,17 +19,17 @@ Vue.use(Vuex);
 
 
 //Vuex
+ const store = new Vuex.Store({
+   state:{
+     item:{}
+   },
+   mutations:{
+     setItem(state,obj){
+       state.item = obj;
+     }
+   }
+ });
 
-const store = new Vuex.Store({
-	state:{
-		item:{}
-	},
-	mutations:{
-		setItem(state,obj){
-			state.item = obj;
-		}
-	}
-});
 
 
 
@@ -45,5 +45,9 @@ Vue.component('formulario', require('./components/Formulario.vue'));
 
 const app = new Vue({
     el: '#app',
-    store
+    store,
+    mounted: function(){
+      console.log("ok");
+      document.getElementById('app').style.display = "block";
+    }
 });
