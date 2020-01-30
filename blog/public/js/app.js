@@ -45746,13 +45746,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     lista: function lista() {
       var _this = this;
 
+      var lista = this.itens.data;
       var ordem = this.ordemAux;
       var ordemCol = this.ordemAuxCol;
       ordem = ordem.toLowerCase();
       ordemCol = parseInt(ordemCol);
 
       if (ordem == "asc") {
-        this.itens.sort(function (a, b) {
+        lista.sort(function (a, b) {
           if (Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) {
             return 1;
           }
@@ -45762,7 +45763,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           return 0;
         });
       } else {
-        this.itens.sort(function (a, b) {
+        lista.sort(function (a, b) {
           if (Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) {
             return 1;
           }
@@ -45774,7 +45775,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       if (this.buscar) {
-        return this.itens.filter(function (res) {
+        return lista.filter(function (res) {
           res = Object.values(res);
           for (var k = 0; k < res.length; k++) {
             if ((res[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
@@ -45785,7 +45786,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       }
 
-      return this.itens;
+      return lista;
     }
   }
 });
@@ -45891,7 +45892,7 @@ var render = function() {
                           {
                             attrs: {
                               id: index,
-                              action: _vm.deletar,
+                              action: _vm.deletar + item.id,
                               method: "post"
                             }
                           },
@@ -46029,9 +46030,9 @@ var render = function() {
                             _vm.detalhe && _vm.modal
                               ? _c("modallink", {
                                   attrs: {
+                                    tipo: "link",
                                     item: item,
                                     url: _vm.detalhe,
-                                    tipo: "link",
                                     nome: "detalhe",
                                     titulo: " Detalhe |",
                                     css: ""
@@ -46048,9 +46049,9 @@ var render = function() {
                             _vm.editar && _vm.modal
                               ? _c("modallink", {
                                   attrs: {
+                                    tipo: "link",
                                     item: item,
                                     url: _vm.editar,
-                                    tipo: "link",
                                     nome: "editar",
                                     titulo: " Editar",
                                     css: ""
